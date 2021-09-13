@@ -2,12 +2,12 @@
   {
     "name": "default",
     "type": "mysql",
-    "host": "localhost",
+    "host": "boofood.cl8j8wc2hw4p.ap-southeast-1.rds.amazonaws.com",
     "port": 3306,
-    "username": "root",
-    "password": "",
-    "database": "",
-    "synchronize": false,
+    "username": "admin",
+    "password": "123456789",
+    "database": "cinemaplus",
+    "synchronize": true,
     "entities": ["entities/*.js"]
   }
 ]
