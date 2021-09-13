@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany } from "typeorm";
 import { Phim } from "./Phim";
 
-@Entity("quocgia", { schema: "cinemaplus" })
-export class Quocgia {
+@Entity("vungmien", { schema: "cinemaplus" })
+export class Vungmien {
   @Column("int", { primary: true, name: "ID" })
   id: number;
 
@@ -21,6 +21,6 @@ export class Quocgia {
   @Column("varchar", { name: "MaVung", nullable: true, length: 10 })
   maVung: string | null;
 
-  // @OneToMany(() => Phim, (phim) => phim.idQuocGia2)
-  // phims: Phim[];
+  @OneToMany(() => Phim, (phim) => phim.idQuocGia2)
+  phims: Phim[];
 }

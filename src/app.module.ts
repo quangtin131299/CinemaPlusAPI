@@ -28,14 +28,13 @@ import { SeatModule } from './seat/seat.module';
 import { BillModule } from './bill/bill.module';
 import { TypeModule } from './type/type.module';
 import { CountryModule } from './country/country.module';
-// import { Quocgia } from 'DTO/entities/Quocgia';
 import { PopcornModule } from './popcorn/popcorn.module';
 import { Bapnuoc } from 'DTO/entities/Bapnuoc';
 import { HoadonBapnuoc } from 'DTO/entities/HoadonBapnuoc';
 import { TokenclientModule } from './tokenclient/tokenclient.module';
 import { Tokenclient } from 'DTO/entities/Tokenclient';
-import { JwtModule } from '@nestjs/jwt';
 import { Phim } from 'DTO/entities/Phim';
+import { Vungmien } from 'DTO/entities/Vungmien';
 
 @Module({
   imports: [
@@ -58,6 +57,7 @@ import { Phim } from 'DTO/entities/Phim';
         Lichchieu,
         Loaiphim,
         Nhacungcap,
+        Vungmien,
         Phim,
         PhimLichchieu,
         PhimPhongXuat,

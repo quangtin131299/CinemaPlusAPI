@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -40,5 +41,11 @@ export class Rapphim {
   vedats: Vedat[];
 
   @ManyToMany(() => Phim, (phim) => phim.rapphims)
+  @JoinTable({
+    name: "phim_rapphim",
+    joinColumns: [{ name: "ID_Rap", referencedColumnName: "id" }],
+    inverseJoinColumns: [{ name: "ID_Phim", referencedColumnName: "id" }],
+    schema: "cinemaplus",
+  })
   phims: Phim[];
 }
