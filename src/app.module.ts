@@ -28,7 +28,7 @@ import { SeatModule } from './seat/seat.module';
 import { BillModule } from './bill/bill.module';
 import { TypeModule } from './type/type.module';
 import { CountryModule } from './country/country.module';
-import { Quocgia } from 'DTO/entities/Quocgia';
+// import { Quocgia } from 'DTO/entities/Quocgia';
 import { PopcornModule } from './popcorn/popcorn.module';
 import { Bapnuoc } from 'DTO/entities/Bapnuoc';
 import { HoadonBapnuoc } from 'DTO/entities/HoadonBapnuoc';
@@ -58,7 +58,6 @@ import { Phim } from 'DTO/entities/Phim';
         Lichchieu,
         Loaiphim,
         Nhacungcap,
-        Quocgia,
         Phim,
         PhimLichchieu,
         PhimPhongXuat,
