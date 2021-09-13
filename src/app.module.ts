@@ -7,7 +7,6 @@ import { Hoadon } from 'DTO/entities/Hoadon';
 import { Khachhang } from 'DTO/entities/Khachhang';
 import { Lichchieu } from 'DTO/entities/Lichchieu';
 import { Loaiphim } from 'DTO/entities/Loaiphim';
-import { Phim } from 'DTO/entities/Phim';
 import { PhimLichchieu } from 'DTO/entities/PhimLichchieu';
 import { PhimPhongXuat } from 'DTO/entities/PhimPhongXuat';
 import { Phong } from 'DTO/entities/Phong';
@@ -36,6 +35,7 @@ import { HoadonBapnuoc } from 'DTO/entities/HoadonBapnuoc';
 import { TokenclientModule } from './tokenclient/tokenclient.module';
 import { Tokenclient } from 'DTO/entities/Tokenclient';
 import { JwtModule } from '@nestjs/jwt';
+import { Phim } from 'DTO/entities/Phim';
 
 @Module({
   imports: [
