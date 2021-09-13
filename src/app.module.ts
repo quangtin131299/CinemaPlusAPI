@@ -58,7 +58,6 @@ import { Phim } from 'DTO/entities/Phim';
         Lichchieu,
         Loaiphim,
         Nhacungcap,
-        Quocgia,
         Phim,
         PhimLichchieu,
         PhimPhongXuat,
