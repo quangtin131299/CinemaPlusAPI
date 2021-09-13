@@ -7,8 +7,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Phong } from "./Phong";
 import { Vedat } from "./Vedat";
+import { Phong } from "./Phong";
 
 @Index("fk_ghe_phong_idx", ["idPhong"], {})
 @Entity("ghe", { schema: "cinemaplus" })
@@ -29,13 +29,13 @@ export class Ghe {
   })
   trangThai: string;
 
+  @OneToMany(() => Vedat, (vedat) => vedat.idGhe2)
+  vedats: Vedat[];
+
   @ManyToOne(() => Phong, (phong) => phong.ghes, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
   @JoinColumn([{ name: "ID_Phong", referencedColumnName: "id" }])
   idPhong2: Phong;
-
-  @OneToMany(() => Vedat, (vedat) => vedat.idGhe2)
-  vedats: Vedat[];
 }

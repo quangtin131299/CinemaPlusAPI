@@ -5,10 +5,10 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Lichchieu } from "./Lichchieu";
-import { Phim } from "./Phim";
 import { Phong } from "./Phong";
+import { Lichchieu } from "./Lichchieu";
 import { Vedat } from "./Vedat";
+import { Phim } from "./Phim";
 
 @Entity("rapphim", { schema: "cinemaplus" })
 export class Rapphim {
@@ -30,15 +30,15 @@ export class Rapphim {
   @Column("varchar", { name: "KinhDo", length: 100 })
   kinhDo: string;
 
-  @OneToMany(() => Lichchieu, (lichchieu) => lichchieu.idRap2)
-  lichchieus: Lichchieu[];
-
-  @ManyToMany(() => Phim, (phim) => phim.rapphims)
-  phims: Phim[];
-
   @OneToMany(() => Phong, (phong) => phong.idRap2)
   phongs: Phong[];
 
+  @OneToMany(() => Lichchieu, (lichchieu) => lichchieu.idRap2)
+  lichchieus: Lichchieu[];
+
   @OneToMany(() => Vedat, (vedat) => vedat.idRap2)
   vedats: Vedat[];
+
+  @ManyToMany(() => Phim, (phim) => phim.rapphims)
+  phims: Phim[];
 }

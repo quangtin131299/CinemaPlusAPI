@@ -5,10 +5,10 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Binhluan } from "./Binhluan";
 import { Giaodich } from "./Giaodich";
-import { Hoadon } from "./Hoadon";
+import { Binhluan } from "./Binhluan";
 import { Vedat } from "./Vedat";
+import { Hoadon } from "./Hoadon";
 
 @Index("Account", ["taiKhoan"], { unique: true })
 @Index("IDX_e5e7417d09341dedd253bb2264", ["taiKhoan"], { unique: true })
@@ -41,15 +41,15 @@ export class Khachhang {
   @Column("text", { name: "AnhDaiDien", nullable: true })
   anhDaiDien: string | null;
 
-  @OneToMany(() => Binhluan, (binhluan) => binhluan.idKhachHang2)
-  binhluans: Binhluan[];
-
   @OneToMany(() => Giaodich, (giaodich) => giaodich.idKhachHang2)
   giaodiches: Giaodich[];
 
-  @OneToMany(() => Hoadon, (hoadon) => hoadon.idKhachHang2)
-  hoadons: Hoadon[];
+  @OneToMany(() => Binhluan, (binhluan) => binhluan.idKhachHang2)
+  binhluans: Binhluan[];
 
   @OneToMany(() => Vedat, (vedat) => vedat.idKhachHang2)
   vedats: Vedat[];
+
+  @OneToMany(() => Hoadon, (hoadon) => hoadon.idKhachHang2)
+  hoadons: Hoadon[];
 }

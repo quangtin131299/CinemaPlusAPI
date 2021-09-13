@@ -68,6 +68,7 @@ import { JwtModule } from '@nestjs/jwt';
         HoadonBapnuoc,
         Tokenclient,
       ],
+      
       synchronize: true,
     }),
     MoviesModule,

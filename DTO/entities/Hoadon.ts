@@ -7,9 +7,9 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Vedat } from "./Vedat";
 import { Khachhang } from "./Khachhang";
 import { HoadonBapnuoc } from "./HoadonBapnuoc";
-import { Vedat } from "./Vedat";
 
 @Index("ID_KhachHang", ["idKhachHang"], {})
 @Entity("hoadon", { schema: "cinemaplus" })
@@ -39,6 +39,9 @@ export class Hoadon {
   @Column("int", { name: "ThanhTienVe", nullable: true })
   thanhTienVe: number | null;
 
+  @OneToMany(() => Vedat, (vedat) => vedat.idHoaDon2)
+  vedats: Vedat[];
+
   @ManyToOne(() => Khachhang, (khachhang) => khachhang.hoadons, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
@@ -48,7 +51,4 @@ export class Hoadon {
 
   @OneToMany(() => HoadonBapnuoc, (hoadonBapnuoc) => hoadonBapnuoc.idHoaDon2)
   hoadonBapnuocs: HoadonBapnuoc[];
-
-  @OneToMany(() => Vedat, (vedat) => vedat.idHoaDon2)
-  vedats: Vedat[];
 }

@@ -1,7 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
-import { Lichchieu } from "./Lichchieu";
 import { Phim } from "./Phim";
 import { Suatchieu } from "./Suatchieu";
+import { Lichchieu } from "./Lichchieu";
 
 @Index("fk_phimlichchieu_lichchieu_idx", ["idLichchieu"], {})
 @Index("fk_phimlichchieu_suat_idx", ["idSuatchieu"], {})
@@ -16,13 +16,6 @@ export class PhimLichchieu {
   @Column("int", { primary: true, name: "ID_Suatchieu" })
   idSuatchieu: number;
 
-  @ManyToOne(() => Lichchieu, (lichchieu) => lichchieu.phimLichchieus, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "ID_Lichchieu", referencedColumnName: "id" }])
-  idLichchieu2: Lichchieu;
-
   @ManyToOne(() => Phim, (phim) => phim.phimLichchieus, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
@@ -36,4 +29,11 @@ export class PhimLichchieu {
   })
   @JoinColumn([{ name: "ID_Suatchieu", referencedColumnName: "id" }])
   idSuatchieu2: Suatchieu;
+
+  @ManyToOne(() => Lichchieu, (lichchieu) => lichchieu.phimLichchieus, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "ID_Lichchieu", referencedColumnName: "id" }])
+  idLichchieu2: Lichchieu;
 }
