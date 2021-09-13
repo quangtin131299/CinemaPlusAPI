@@ -21,6 +21,6 @@ export class Quocgia {
   @Column("varchar", { name: "MaVung", nullable: true, length: 10 })
   maVung: string | null;
 
-  @OneToMany(() => Phim, (phim) => phim.idQuocGia2)
-  phims: Phim[];
+  // @OneToMany(() => Phim, (phim) => phim.idQuocGia2)
+  // phims: Phim[];
 }

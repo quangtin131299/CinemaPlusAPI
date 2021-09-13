@@ -11,7 +11,6 @@ import {
 } from "typeorm";
 import { PhimPhongXuat } from "./PhimPhongXuat";
 import { Binhluan } from "./Binhluan";
-import { Quocgia } from "./Quocgia";
 import { Nhacungcap } from "./Nhacungcap";
 import { Vedat } from "./Vedat";
 import { Rapphim } from "./Rapphim";
@@ -71,12 +70,12 @@ export class Phim {
   @OneToMany(() => Binhluan, (binhluan) => binhluan.idPhim2)
   binhluans: Binhluan[];
 
-  @ManyToOne(() => Quocgia, (quocgia) => quocgia.phims, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "ID_QuocGia", referencedColumnName: "id" }])
-  idQuocGia2: Quocgia;
+  // @ManyToOne(() => Quocgia, (quocgia) => quocgia.phims, {
+  //   onDelete: "NO ACTION",
+  //   onUpdate: "NO ACTION",
+  // })
+  // @JoinColumn([{ name: "ID_QuocGia", referencedColumnName: "id" }])
+  // idQuocGia2: Quocgia;
 
   @ManyToOne(() => Nhacungcap, (nhacungcap) => nhacungcap.phims, {
     onDelete: "NO ACTION",
