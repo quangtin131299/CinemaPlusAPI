@@ -1,9 +1,9 @@
 import 'dotenv/config';
 
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import * as morgan from 'morgan';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from 'src/app.module';
 
 declare const module: any;
 
