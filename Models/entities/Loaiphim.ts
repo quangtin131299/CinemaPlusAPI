@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { Phim } from "./Phim";
 
-@Entity("loaiphim", { schema: "cinemaplus" })
+@Entity("loaiphim", { schema: "datvephim" })
 export class Loaiphim {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;
@@ -20,7 +20,7 @@ export class Loaiphim {
     name: "phim_loaiphim",
     joinColumns: [{ name: "ID_Loai", referencedColumnName: "id" }],
     inverseJoinColumns: [{ name: "ID_Phim", referencedColumnName: "id" }],
-    schema: "cinemaplus",
+    schema: "datvephim",
   })
   phims: Phim[];
 }

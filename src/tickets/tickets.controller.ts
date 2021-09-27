@@ -6,13 +6,18 @@ import {
   Query,
   Put,
   Headers,
+  Res,
+  HttpStatus,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Hoadon } from 'DTO/entities/Hoadon';
+import { ApiForbiddenResponse, ApiHeader,  ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Hoadon } from 'Models/entities/Hoadon';
+import { Response } from 'express';
 import { BillService } from 'src/bill/bill.service';
 import { SeatService } from 'src/seat/seat.service';
 import { TicketsService } from './tickets.service';
 
+@ApiTags('Ticker')
 @Controller('tickets')
 export class TicketsController {
   constructor(
@@ -23,11 +28,19 @@ export class TicketsController {
   ) {}
 
   @Get('/getyourticketbyid')
+  @ApiOkResponse({description: 'Get ticker of customer'})
+  @ApiNotFoundResponse({description: 'Not Found.' })
+  @ApiForbiddenResponse({description: 'Forbidden.'})
+  @ApiHeader({
+    name: 'tokenclient',
+    description: 'Token client',
+  })
   async getYourTicketById(
+    @Res() res: Response,
     @Headers() hearders,
     @Query('idcustomer') idcustomer: number,
     @Query('currentDate') currentDate: string,
-  ): Promise<any[]> {
+  ): Promise<any> {
     if (hearders.tokenclient && hearders.tokenclient != '') {
       let verifyResult = await this.jwtService.verifyAsync(
         hearders.tokenclient,
@@ -36,16 +49,17 @@ export class TicketsController {
       if (verifyResult) {
         return await this.ticketService.getYourTicker(idcustomer, currentDate);
       } else {
-        return [];
+        return res.status(HttpStatus.FORBIDDEN).json([]);
       }
     }else{
-      console.log("ABC");
       
-        return [];
+      return res.status(HttpStatus.OK).json([]);
     }
   }
 
   @Post('/processtickerbooking')
+  @ApiOkResponse({description: 'Booking ticker'})
+  @ApiNotFoundResponse({description: ''})
   async processTickerBooking(@Body() dataticker: any): Promise<any> {
     try {
       let newBill = new Hoadon();
@@ -78,6 +92,8 @@ export class TicketsController {
   }
 
   @Put('/updatestatuscancel')
+  @ApiOkResponse({description: 'Update status ticker is cancel'})
+  @ApiNotFoundResponse({description: 'Not Found'})
   async updateStatusCancel(@Body() data: any): Promise<number> {
     let resultUpdate = await this.ticketService.updateStatusCancelTicker(
       data.id,
@@ -97,8 +113,10 @@ export class TicketsController {
 
     return 0;
   }
-  // idCustomer, currentTime, currentDate
+
   @Put('/gettickerexpired')
+  @ApiOkResponse({description: 'Get ticker expired of customer'})
+  @ApiNotFoundResponse({description: 'Not Found'})
   async getTickerExpired(@Body() data: any) {
     let listTickerExpired = await this.ticketService.getTickerExpired(
       data.idCustomer,

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Rapphim } from 'DTO/entities/Rapphim';
+import { Rapphim } from 'Models/entities/Rapphim';
 import { CinemasController } from './cinemas.controller';
 import { CinemasService } from './cinemas.service';
 

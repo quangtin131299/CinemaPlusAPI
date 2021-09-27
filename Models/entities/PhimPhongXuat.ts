@@ -3,10 +3,10 @@ import { Phim } from "./Phim";
 import { Suatchieu } from "./Suatchieu";
 import { Phong } from "./Phong";
 
+@Index("ID_Phim", ["idPhim"], {})
 @Index("ID_Phong", ["idPhong"], {})
 @Index("ID_XuatChieu", ["idXuatChieu"], {})
-@Index("ID_Phim", ["idPhim"], {})
-@Entity("phim_phong_xuat", { schema: "cinemaplus" })
+@Entity("phim_phong_xuat", { schema: "datvephim" })
 export class PhimPhongXuat {
   @Column("int", { primary: true, name: "ID_Phim" })
   idPhim: number;

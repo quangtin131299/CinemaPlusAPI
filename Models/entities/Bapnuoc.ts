@@ -8,7 +8,7 @@ import {
 import { HoadonBapnuoc } from "./HoadonBapnuoc";
 
 @Index("fulltext_bapnuoc", ["tenCombo"], { fulltext: true })
-@Entity("bapnuoc", { schema: "cinemaplus" })
+@Entity("bapnuoc", { schema: "datvephim" })
 export class Bapnuoc {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;

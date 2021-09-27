@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("admin", { schema: "cinemaplus" })
+@Entity("admin", { schema: "datvephim" })
 export class Admin {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;

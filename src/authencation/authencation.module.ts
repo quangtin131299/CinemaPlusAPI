@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Khachhang } from 'DTO/entities/Khachhang';
+import { Khachhang } from 'Models/entities/Khachhang';
 import { AuthencationController } from './authencation.controller';
 import { AuthencationService } from './authencation.service';
 

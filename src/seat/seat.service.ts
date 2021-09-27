@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Ghe } from 'DTO/entities/Ghe';
+import { Ghe } from 'Models/entities/Ghe';
 import { Repository, UpdateResult } from 'typeorm';
 
 @Injectable()

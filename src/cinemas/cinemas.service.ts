@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Rapphim } from 'DTO/entities/Rapphim';
+import { Rapphim } from 'Models/entities/Rapphim';
 import { Repository } from 'typeorm';
 
 @Injectable()

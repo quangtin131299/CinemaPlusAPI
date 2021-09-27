@@ -1,13 +1,17 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { Hoadon } from 'DTO/entities/Hoadon';
+import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Hoadon } from 'Models/entities/Hoadon';
 import { BillService } from './bill.service';
 
+@ApiTags('Bill')
 @Controller('bill')
 export class BillController {
 
 
     constructor(private billService: BillService){}
 
+    @ApiOkResponse({description: 'Get all bill by id customer'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     @Get('/getallbillofcustomer')
     async getAllBillByCustomerId(@Query('idCustomer') idCustomer: number): Promise<Hoadon[]>{
         let listBill = await this.billService.getAllBillByCustomerId(idCustomer);

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Hoadon } from 'DTO/entities/Hoadon';
-import { HoadonBapnuoc } from 'DTO/entities/HoadonBapnuoc';
+import { Hoadon } from 'Models/entities/Hoadon';
+import { HoadonBapnuoc } from 'Models/entities/HoadonBapnuoc';
 import { BillController } from './bill.controller';
 import { BillService } from './bill.service';
 

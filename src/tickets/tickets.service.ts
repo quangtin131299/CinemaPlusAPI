@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Vedat } from 'DTO/entities/Vedat';
+import { Vedat } from 'Models/entities/Vedat';
 import { Repository, UpdateResult } from 'typeorm';
 
 @Injectable()

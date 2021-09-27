@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Hoadon } from 'DTO/entities/Hoadon';
-import { HoadonBapnuoc } from 'DTO/entities/HoadonBapnuoc';
+import { Hoadon } from 'Models/entities/Hoadon';
+import { HoadonBapnuoc } from 'Models/entities/HoadonBapnuoc';
 import { Repository } from 'typeorm';
 
 @Injectable()

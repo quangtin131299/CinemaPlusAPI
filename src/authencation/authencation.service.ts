@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Khachhang } from 'DTO/entities/Khachhang';
+import { Khachhang } from 'Models/entities/Khachhang';
 import { Repository, UpdateResult } from 'typeorm';
 
 @Injectable()

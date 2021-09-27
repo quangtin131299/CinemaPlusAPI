@@ -1,13 +1,16 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { Lichchieu } from 'DTO/entities/Lichchieu';
+import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ScheduleService } from './schedule.service';
 
+@ApiTags('Schedule')
 @Controller('schedule')
 export class ScheduleController {
 
     constructor(private scheduleService: ScheduleService) { }
 
     @Get('/getschedulebycinema')
+    @ApiOkResponse({description: 'Get schedule by id cinema, id movie, current date.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     async getScheduleByCinema(@Query('idMovie') idMovie: number
                               , @Query('idCinema') idCinema: number
                               , @Query('currentDate') currentDate: string): Promise<any>{        
@@ -16,7 +19,10 @@ export class ScheduleController {
         return this.convertTime(resultTime, false);
     }
 
+    
     @Get('/getscheduleofdate')
+    @ApiOkResponse({description: 'Get schedule by id cinema, current date'})
+    @ApiNotFoundResponse({description: 'Not Found'})
     async getScheduleOfCurrentDate(@Query('idCinema') idCinema: number,@Query('currentDate') currentDate: string ): Promise<any>{   
         let resultSchedule = await this.scheduleService.getScheduleOfDate(idCinema, currentDate);
 

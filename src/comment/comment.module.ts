@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Binhluan } from 'DTO/entities/Binhluan';
+import { Binhluan } from 'Models/entities/Binhluan';
 import { CommentController } from './comment.controller';
 import { CommentService } from './comment.service';
 

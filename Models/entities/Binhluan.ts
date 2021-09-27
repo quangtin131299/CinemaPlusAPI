@@ -11,7 +11,7 @@ import { Phim } from "./Phim";
 
 @Index("_idx", ["idKhachHang"], {})
 @Index("fk_binhluan_phim_idx", ["idPhim"], {})
-@Entity("binhluan", { schema: "cinemaplus" })
+@Entity("binhluan", { schema: "datvephim" })
 export class Binhluan {
   @PrimaryGeneratedColumn({ type: "int", name: "Id" })
   id: number;

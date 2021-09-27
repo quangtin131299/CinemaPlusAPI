@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { Binhluan } from 'DTO/entities/Binhluan';
+import { ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Binhluan } from 'Models/entities/Binhluan';
 import { CommentService } from './comment.service';
 
+@ApiTags('Comment')
 @Controller('comment')
 export class CommentController {
 
@@ -48,7 +50,10 @@ export class CommentController {
     constructor(private commentService: CommentService) {        
     }
 
+   
     @Post("/addnewcomment")
+    @ApiCreatedResponse({description: 'Create new comment for movie'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     async addNewComment(@Body() dataComment: any): Promise<Object>{
         let newComment = new Binhluan();
 
@@ -72,6 +77,8 @@ export class CommentController {
     }
 
     @Get("/getcommentbymovie")
+    @ApiOkResponse({description: 'Get comment of movie'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     getCommentOfMovie(@Query('idMovie') idMovie: number){
         return this.commentService.getCommentOfMovie(idMovie);
     }

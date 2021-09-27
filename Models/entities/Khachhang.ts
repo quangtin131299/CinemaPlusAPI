@@ -5,14 +5,14 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Giaodich } from "./Giaodich";
 import { Binhluan } from "./Binhluan";
-import { Vedat } from "./Vedat";
+import { Giaodich } from "./Giaodich";
 import { Hoadon } from "./Hoadon";
+import { Vedat } from "./Vedat";
 
 @Index("Account", ["taiKhoan"], { unique: true })
 @Index("IDX_e5e7417d09341dedd253bb2264", ["taiKhoan"], { unique: true })
-@Entity("khachhang", { schema: "cinemaplus" })
+@Entity("khachhang", { schema: "datvephim" })
 export class Khachhang {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;
@@ -41,15 +41,15 @@ export class Khachhang {
   @Column("text", { name: "AnhDaiDien", nullable: true })
   anhDaiDien: string | null;
 
-  @OneToMany(() => Giaodich, (giaodich) => giaodich.idKhachHang2)
-  giaodiches: Giaodich[];
-
   @OneToMany(() => Binhluan, (binhluan) => binhluan.idKhachHang2)
   binhluans: Binhluan[];
 
-  @OneToMany(() => Vedat, (vedat) => vedat.idKhachHang2)
-  vedats: Vedat[];
+  @OneToMany(() => Giaodich, (giaodich) => giaodich.idKhachHang2)
+  giaodiches: Giaodich[];
 
   @OneToMany(() => Hoadon, (hoadon) => hoadon.idKhachHang2)
   hoadons: Hoadon[];
+
+  @OneToMany(() => Vedat, (vedat) => vedat.idKhachHang2)
+  vedats: Vedat[];
 }

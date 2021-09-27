@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Bapnuoc } from 'DTO/entities/Bapnuoc';
+import { Bapnuoc } from 'Models/entities/Bapnuoc';
 import { Repository } from 'typeorm';
 
 @Injectable()

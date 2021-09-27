@@ -8,7 +8,7 @@ import {
 import { Phim } from "./Phim";
 
 @Index("fulltext_tennhacungcap", ["tenNhaCungCap"], { fulltext: true })
-@Entity("nhacungcap", { schema: "cinemaplus" })
+@Entity("nhacungcap", { schema: "datvephim" })
 export class Nhacungcap {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;

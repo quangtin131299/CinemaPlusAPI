@@ -1,7 +1,9 @@
-import { Body, Controller, Get, Put, Query } from '@nestjs/common';
-import { Ghe } from 'DTO/entities/Ghe';
+import { Controller, Get, Put, Query } from '@nestjs/common';
+import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Ghe } from 'Models/entities/Ghe';
 import { SeatService } from './seat.service';
 
+@ApiTags('Seat')
 @Controller('seat')
 export class SeatController {
   
@@ -11,6 +13,8 @@ export class SeatController {
   constructor(private seatServie: SeatService) {}
 
   @Get('/getallseatofroom')
+  @ApiOkResponse({description: 'Get all seat of room'})
+  @ApiNotFoundResponse({description: 'Not Found'})
   getSeatOfRoom(
     @Query('idMovie') idMovie: number,
     @Query('currentDate') currentDate: string,
@@ -22,6 +26,8 @@ export class SeatController {
   }
 
   @Get('/getallseatbooking')
+  @ApiOkResponse({description: 'Get all seat booking of room'})
+  @ApiNotFoundResponse({description: 'Not Found'})
   getAllSeatBookingOfRoom(@Query('idMovie') idMovie: number
                           , @Query('currentDate') currentDate: string
                           , @Query('idRoom') idRoom: number

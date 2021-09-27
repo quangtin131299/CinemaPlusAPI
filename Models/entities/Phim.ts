@@ -3,24 +3,25 @@ import {
   Entity,
   Index,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { PhimPhongXuat } from "./PhimPhongXuat";
 import { Binhluan } from "./Binhluan";
-import { Vungmien } from "./Vungmien";
 import { Nhacungcap } from "./Nhacungcap";
-import { Vedat } from "./Vedat";
-import { Rapphim } from "./Rapphim";
-import { Loaiphim } from "./Loaiphim";
+import { Vungmien } from "./Vungmien";
 import { PhimLichchieu } from "./PhimLichchieu";
+import { Loaiphim } from "./Loaiphim";
+import { PhimPhongXuat } from "./PhimPhongXuat";
+import { Rapphim } from "./Rapphim";
+import { Vedat } from "./Vedat";
 
 @Index("fk_phim_nhacungcap_idx", ["idNhaCungCap"], {})
 @Index("fk_phim_quocgia_idx", ["idQuocGia"], {})
 @Index("fulltext_tenphim", ["tenPhim"], { fulltext: true })
-@Entity("phim", { schema: "cinemaplus" })
+@Entity("phim", { schema: "datvephim" })
 export class Phim {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;
@@ -64,18 +65,8 @@ export class Phim {
   @Column("tinyint", { name: "isDelete", nullable: true, default: () => "'0'" })
   isDelete: number | null;
 
-  @OneToMany(() => PhimPhongXuat, (phimPhongXuat) => phimPhongXuat.idPhim2)
-  phimPhongXuats: PhimPhongXuat[];
-
   @OneToMany(() => Binhluan, (binhluan) => binhluan.idPhim2)
   binhluans: Binhluan[];
-
-  @ManyToOne(() => Vungmien, (vungmien) => vungmien.phims, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "ID_QuocGia", referencedColumnName: "id" }])
-  idQuocGia2: Vungmien;
 
   @ManyToOne(() => Nhacungcap, (nhacungcap) => nhacungcap.phims, {
     onDelete: "NO ACTION",
@@ -84,15 +75,31 @@ export class Phim {
   @JoinColumn([{ name: "ID_NhaCungCap", referencedColumnName: "id" }])
   idNhaCungCap2: Nhacungcap;
 
-  @OneToMany(() => Vedat, (vedat) => vedat.idPhim2)
-  vedats: Vedat[];
+  @ManyToOne(() => Vungmien, (vungmien) => vungmien.phims, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "ID_QuocGia", referencedColumnName: "id" }])
+  idQuocGia2: Vungmien;
 
-  @ManyToMany(() => Rapphim, (rapphim) => rapphim.phims)
-  rapphims: Rapphim[];
+  @OneToMany(() => PhimLichchieu, (phimLichchieu) => phimLichchieu.idPhim2)
+  phimLichchieus: PhimLichchieu[];
 
   @ManyToMany(() => Loaiphim, (loaiphim) => loaiphim.phims)
   loaiphims: Loaiphim[];
 
-  @OneToMany(() => PhimLichchieu, (phimLichchieu) => phimLichchieu.idPhim2)
-  phimLichchieus: PhimLichchieu[];
+  @OneToMany(() => PhimPhongXuat, (phimPhongXuat) => phimPhongXuat.idPhim2)
+  phimPhongXuats: PhimPhongXuat[];
+
+  @ManyToMany(() => Rapphim, (rapphim) => rapphim.phims)
+  @JoinTable({
+    name: "phim_rapphim",
+    joinColumns: [{ name: "ID_Phim", referencedColumnName: "id" }],
+    inverseJoinColumns: [{ name: "ID_Rap", referencedColumnName: "id" }],
+    schema: "datvephim",
+  })
+  rapphims: Rapphim[];
+
+  @OneToMany(() => Vedat, (vedat) => vedat.idPhim2)
+  vedats: Vedat[];
 }

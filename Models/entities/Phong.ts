@@ -7,13 +7,13 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Rapphim } from "./Rapphim";
-import { PhimPhongXuat } from "./PhimPhongXuat";
-import { Vedat } from "./Vedat";
 import { Ghe } from "./Ghe";
+import { PhimPhongXuat } from "./PhimPhongXuat";
+import { Rapphim } from "./Rapphim";
+import { Vedat } from "./Vedat";
 
 @Index("ID_Rap", ["idRap"], {})
-@Entity("phong", { schema: "cinemaplus" })
+@Entity("phong", { schema: "datvephim" })
 export class Phong {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;
@@ -24,6 +24,12 @@ export class Phong {
   @Column("int", { name: "ID_Rap", default: () => "'1'" })
   idRap: number;
 
+  @OneToMany(() => Ghe, (ghe) => ghe.idPhong2)
+  ghes: Ghe[];
+
+  @OneToMany(() => PhimPhongXuat, (phimPhongXuat) => phimPhongXuat.idPhong2)
+  phimPhongXuats: PhimPhongXuat[];
+
   @ManyToOne(() => Rapphim, (rapphim) => rapphim.phongs, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
@@ -31,12 +37,6 @@ export class Phong {
   @JoinColumn([{ name: "ID_Rap", referencedColumnName: "id" }])
   idRap2: Rapphim;
 
-  @OneToMany(() => PhimPhongXuat, (phimPhongXuat) => phimPhongXuat.idPhong2)
-  phimPhongXuats: PhimPhongXuat[];
-
   @OneToMany(() => Vedat, (vedat) => vedat.idPhong2)
   vedats: Vedat[];
-
-  @OneToMany(() => Ghe, (ghe) => ghe.idPhong2)
-  ghes: Ghe[];
 }

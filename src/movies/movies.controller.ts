@@ -1,15 +1,19 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { Phim } from 'DTO/entities/Phim';
+import { ApiForbiddenResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Phim } from 'Models/entities/Phim';
 import { ScheduleService } from 'src/schedule/schedule.service';
 import { MoviesService } from './movies.service';
 
+@ApiTags('Movie')
 @Controller('movies')
 export class MoviesController {
 
-
     constructor(private movieService : MoviesService, private scheduleService: ScheduleService){}
 
+  
     @Get('/getallmovie')
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found'})
     async getAllMovie(@Query('currentTime') currentTime:string, @Query('currentDate') currentDate:string ): Promise<any[]>{
        let movies = await this.movieService.getMovieNowShowing();
        let viewCountMovie = await this.movieService.getViewCountOfMovie();
@@ -20,21 +24,29 @@ export class MoviesController {
     }
 
     @Get('/getmoviecomingsoon')
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     getMovieComingSoon(): Promise<Phim[]>{
         return this.movieService.getMovieComingSoon();
     }
 
     @Get('/getfavorite')
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     getMovieFavorite(): Promise<Phim[]> {
         return this.movieService.getMovieFavorite();
     }
 
     @Get("/getviewcountofMovie")
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     getViewCountOfMovie(): Promise<Object[]>{
         return this.movieService.getViewCountOfMovie();
     }
 
     @Get('/getnewmovie')
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     getNewMovie(@Query('idMovie') idMovie: number):Promise<Phim>{
         return this.movieService.getNewMovie(idMovie);
     }
@@ -78,6 +90,8 @@ export class MoviesController {
     }
 
     @Get('/searchmovie')
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     searchMovieNowShow(@Query('keyWord') keyWord: string
                        , @Query('typeName') typeName: string
                        , @Query('countryName') contryName: string
@@ -94,18 +108,24 @@ export class MoviesController {
     }
 
     @Get('/getallmoviebycinemaid')
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     getAllMovieByCinemaId(@Query('idCinema') idCinema: number): Promise<Phim[]>{
         return this.movieService.getMovieByCinemaId(idCinema);
     }
 
 
     @Get('/getmovieofticker')
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     getMovieOfTicker(@Query('idCustomer') idCustomer : number): Promise<any[]>{
         return this.movieService.getMovieOfTicker(idCustomer);
     }
 
 
     @Get('/searchallmovie')
+    @ApiOkResponse({description: 'Get all coming soon movie and show now movie.'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
     searchAllMovie(@Query('keyWord') keyWord: string
                     , @Query('typeName') typeName: string
                     , @Query('countryName') contryName: string

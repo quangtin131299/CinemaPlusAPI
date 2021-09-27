@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Binhluan } from 'DTO/entities/Binhluan';
+import { Binhluan } from 'Models/entities/Binhluan';
 import { InsertResult, Repository } from 'typeorm';
 
 @Injectable()

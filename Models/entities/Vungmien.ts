@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany } from "typeorm";
 import { Phim } from "./Phim";
 
-@Entity("vungmien", { schema: "cinemaplus" })
+@Entity("vungmien", { schema: "datvephim" })
 export class Vungmien {
   @Column("int", { primary: true, name: "ID" })
   id: number;

@@ -25,16 +25,20 @@
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
-    "@nestjs/common": "^7.6.13",
-    "@nestjs/core": "^7.6.13",
+    "@nest-middlewares/morgan": "^6.0.0",
+    "@nestjs/common": "^8.0.6",
+    "@nestjs/config": "^1.0.1",
+    "@nestjs/core": "^8.0.6",
     "@nestjs/jwt": "^8.0.0",
-    "@nestjs/platform-express": "^7.6.13",
-    "@nestjs/typeorm": "^7.1.5",
+    "@nestjs/platform-express": "^8.0.6",
+    "@nestjs/swagger": "^5.0.9",
+    "@nestjs/typeorm": "^8.0.2",
     "mysql2": "^2.2.5",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.6",
+    "rxjs": "^7.0.0",
+    "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.32"
   },
   "devDependencies": {
@@ -69,7 +73,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "./",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"

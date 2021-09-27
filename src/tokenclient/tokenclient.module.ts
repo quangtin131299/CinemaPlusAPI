@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Tokenclient } from 'DTO/entities/Tokenclient';
+import { Tokenclient } from 'Models/entities/Tokenclient';
 import { TokenclientController } from './tokenclient.controller';
 import { TokenclientService } from './tokenclient.service';
 

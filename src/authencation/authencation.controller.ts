@@ -1,7 +1,11 @@
-import { Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Put, Query, Res } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Khachhang } from 'DTO/entities/Khachhang';
+import { ApiTags } from '@nestjs/swagger';
+import { Khachhang } from 'Models/entities/Khachhang';
+import { Response } from 'express';
 import { AuthencationService } from './authencation.service';
+
+@ApiTags('Customer')
 @Controller('authencation')
 export class AuthencationController {
   private readonly NOT_ID_CUSTOMER = 0;
@@ -12,7 +16,7 @@ export class AuthencationController {
   ) {}
 
   @Post('/logincustomer')
-  async loginCustomer(@Body() data): Promise<any> {
+  async loginCustomer(@Body() data, @Res() res:Response): Promise<any> {
     let username = data.account;
     let password = data.password;    
 
@@ -24,7 +28,7 @@ export class AuthencationController {
     if(customer && customer != null){
       const jwt = await this.jwtService.signAsync({ customerId: customer.id });
 
-      return {
+      return res.status(HttpStatus.OK).json({
         id: customer.id,
         hoTen: customer.hoTen,
         email: customer.email,
@@ -35,10 +39,10 @@ export class AuthencationController {
         ngayDangKy: customer.ngayDangKy,
         anhDaiDien: customer.anhDaiDien,
         tokenClient: jwt,
-      }
+      });
     }
 
-    return { id: this.NOT_ID_CUSTOMER };
+    return res.status(HttpStatus.OK).json({ id: this.NOT_ID_CUSTOMER });
   }
 
   @Post('/register')

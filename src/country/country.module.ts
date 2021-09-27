@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Vungmien } from 'DTO/entities/Vungmien';
+import { Vungmien } from 'Models/entities/Vungmien';
 import { CountryController } from './country.controller';
 import { CountryService } from './country.service';
 

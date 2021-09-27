@@ -1,14 +1,23 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
+import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CountryService } from './country.service';
+import {Response} from 'express'
 
+@ApiTags('Country')
 @Controller('country')
 export class CountryController {
 
     constructor(private countryService: CountryService){ }
 
     @Get('getcountrymovie')
-    getContryOfMovie(){
-        return this.countryService.getCountryMovie();
+    @ApiOkResponse({description: 'Get all country'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
+    async getContryOfMovie(@Res() res: Response){
+
+        // res.status(HttpStatus.OK).json() 
+       
+        
+        return res.status(HttpStatus.OK).json(await this.countryService.getCountryMovie());
     }
 
 }

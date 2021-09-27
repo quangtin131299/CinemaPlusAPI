@@ -11,7 +11,7 @@ import { Rapphim } from "./Rapphim";
 import { PhimLichchieu } from "./PhimLichchieu";
 
 @Index("ID_Rap", ["idRap"], {})
-@Entity("lichchieu", { schema: "cinemaplus" })
+@Entity("lichchieu", { schema: "datvephim" })
 export class Lichchieu {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;

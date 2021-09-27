@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Lichchieu } from 'DTO/entities/Lichchieu';
-import { PhimLichchieu } from 'DTO/entities/PhimLichchieu';
-import { Suatchieu } from 'DTO/entities/Suatchieu';
+import { Lichchieu } from 'Models/entities/Lichchieu';
+import { PhimLichchieu } from 'Models/entities/PhimLichchieu';
+import { Suatchieu } from 'Models/entities/Suatchieu';
 import { ScheduleController } from './schedule.controller';
 import { ScheduleService } from './schedule.service';
 

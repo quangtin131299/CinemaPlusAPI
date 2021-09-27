@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Lichchieu } from 'DTO/entities/Lichchieu';
+import { Lichchieu } from 'Models/entities/Lichchieu';
 import { Repository } from 'typeorm';
 
 @Injectable()

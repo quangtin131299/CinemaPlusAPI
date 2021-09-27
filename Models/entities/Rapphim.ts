@@ -1,17 +1,16 @@
 import {
   Column,
   Entity,
-  JoinTable,
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Phong } from "./Phong";
 import { Lichchieu } from "./Lichchieu";
-import { Vedat } from "./Vedat";
 import { Phim } from "./Phim";
+import { Phong } from "./Phong";
+import { Vedat } from "./Vedat";
 
-@Entity("rapphim", { schema: "cinemaplus" })
+@Entity("rapphim", { schema: "datvephim" })
 export class Rapphim {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
   id: number;
@@ -31,21 +30,15 @@ export class Rapphim {
   @Column("varchar", { name: "KinhDo", length: 100 })
   kinhDo: string;
 
-  @OneToMany(() => Phong, (phong) => phong.idRap2)
-  phongs: Phong[];
-
   @OneToMany(() => Lichchieu, (lichchieu) => lichchieu.idRap2)
   lichchieus: Lichchieu[];
 
+  @ManyToMany(() => Phim, (phim) => phim.rapphims)
+  phims: Phim[];
+
+  @OneToMany(() => Phong, (phong) => phong.idRap2)
+  phongs: Phong[];
+
   @OneToMany(() => Vedat, (vedat) => vedat.idRap2)
   vedats: Vedat[];
-
-  @ManyToMany(() => Phim, (phim) => phim.rapphims)
-  @JoinTable({
-    name: "phim_rapphim",
-    joinColumns: [{ name: "ID_Rap", referencedColumnName: "id" }],
-    inverseJoinColumns: [{ name: "ID_Phim", referencedColumnName: "id" }],
-    schema: "cinemaplus",
-  })
-  phims: Phim[];
 }

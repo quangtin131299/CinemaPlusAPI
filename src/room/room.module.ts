@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Phong } from 'DTO/entities/Phong';
+import { Phong } from 'Models/entities/Phong';
 import { RoomController } from './room.controller';
 import { RoomService } from './room.service';
 

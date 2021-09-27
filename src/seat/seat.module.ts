@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Ghe } from 'DTO/entities/Ghe';
+import { Ghe } from 'Models/entities/Ghe';
 import { SeatController } from './seat.controller';
 import { SeatService } from './seat.service';
 

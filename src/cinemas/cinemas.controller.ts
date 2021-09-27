@@ -1,5 +1,5 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { Rapphim } from 'DTO/entities/Rapphim';
+import { Rapphim } from 'Models/entities/Rapphim';
 import { CinemasService } from './cinemas.service';
 
 @Controller('cinemas')

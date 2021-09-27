@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Tokenclient } from 'DTO/entities/Tokenclient';
+import { Tokenclient } from 'Models/entities/Tokenclient';
 import { Repository } from 'typeorm';
 
 @Injectable()

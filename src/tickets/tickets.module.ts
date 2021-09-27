@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Vedat } from 'DTO/entities/Vedat';
+import { Vedat } from 'Models/entities/Vedat';
 import { BillModule } from 'src/bill/bill.module';
 import { SeatModule } from 'src/seat/seat.module';
 import { TicketsController } from './tickets.controller';
