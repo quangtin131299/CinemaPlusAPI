@@ -26,7 +26,7 @@ import { Vungmien } from 'Models/entities/Vungmien';
     imports:[
       TypeOrmModule.forRoot({
         type: 'mysql',
-        host: 'db4free.net',
+        host: 'db4free',
         port: 3306,
         username: 'quang_tin',
         password: 'Ngolamquangtin1@',
@@ -52,9 +52,8 @@ import { Vungmien } from 'Models/entities/Vungmien';
           Suatchieu,
           Tokenclient,
           Vedat
-        ],
-        
-        synchronize: true,
+        ],  
+        synchronize: false,
       })
     ],
 })
