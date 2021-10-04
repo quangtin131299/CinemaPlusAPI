@@ -21,6 +21,7 @@ import { Suatchieu } from 'Models/entities/Suatchieu';
 import { Tokenclient } from 'Models/entities/Tokenclient';
 import { Vedat } from 'Models/entities/Vedat';
 import { Vungmien } from 'Models/entities/Vungmien';
+import { KhachhangPhim } from 'Models/entities/KhachhangPhim';
 
 @Module({
     imports:[
@@ -51,7 +52,8 @@ import { Vungmien } from 'Models/entities/Vungmien';
           Rapphim,
           Suatchieu,
           Tokenclient,
-          Vedat
+          Vedat,
+          KhachhangPhim
         ],  
         synchronize: false,
       })

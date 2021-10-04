@@ -8,6 +8,7 @@ import {
 import { Binhluan } from "./Binhluan";
 import { Giaodich } from "./Giaodich";
 import { Hoadon } from "./Hoadon";
+import { KhachhangPhim } from "./KhachhangPhim";
 import { Vedat } from "./Vedat";
 
 @Index("Account", ["taiKhoan"], { unique: true })
@@ -49,6 +50,9 @@ export class Khachhang {
 
   @OneToMany(() => Hoadon, (hoadon) => hoadon.idKhachHang2)
   hoadons: Hoadon[];
+
+  @OneToMany(() => KhachhangPhim, (khachhangPhim) => khachhangPhim.idKhachHang2)
+  khachhangPhims: KhachhangPhim[];
 
   @OneToMany(() => Vedat, (vedat) => vedat.idKhachHang2)
   vedats: Vedat[];

@@ -9,7 +9,7 @@ export class CountryService {
     constructor(@InjectRepository(Vungmien) private countryRepository: Repository<Vungmien>) {}
 
 
-    getCountryMovie(): Promise<any>{
+    getCountryMovie(): Promise<Vungmien[]>{
         
         return this.countryRepository.createQueryBuilder('country')
                     .innerJoinAndSelect('country.phims', 'movie')

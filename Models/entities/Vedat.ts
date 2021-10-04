@@ -6,21 +6,21 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Ghe } from "./Ghe";
-import { Hoadon } from "./Hoadon";
-import { Khachhang } from "./Khachhang";
-import { Phim } from "./Phim";
 import { Phong } from "./Phong";
+import { Hoadon } from "./Hoadon";
 import { Rapphim } from "./Rapphim";
+import { Khachhang } from "./Khachhang";
 import { Suatchieu } from "./Suatchieu";
+import { Phim } from "./Phim";
+import { Ghe } from "./Ghe";
 
 @Index("ID_Ghe", ["idGhe"], {})
-@Index("ID_HoaDon", ["idHoaDon"], {})
-@Index("ID_KhachHang", ["idKhachHang"], {})
 @Index("ID_Phim", ["idPhim"], {})
-@Index("ID_Phong", ["idPhong"], {})
+@Index("ID_KhachHang", ["idKhachHang"], {})
 @Index("ID_Rap", ["idRap"], {})
 @Index("ID_Suat", ["idSuat"], {})
+@Index("ID_HoaDon", ["idHoaDon"], {})
+@Index("ID_Phong", ["idPhong"], {})
 @Entity("vedat", { schema: "datvephim" })
 export class Vedat {
   @PrimaryGeneratedColumn({ type: "int", name: "ID" })
@@ -56,12 +56,12 @@ export class Vedat {
   @Column("int", { name: "GiaVe", nullable: true })
   giaVe: number | null;
 
-  @ManyToOne(() => Ghe, (ghe) => ghe.vedats, {
+  @ManyToOne(() => Phong, (phong) => phong.vedats, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
-  @JoinColumn([{ name: "ID_Ghe", referencedColumnName: "id" }])
-  idGhe2: Ghe;
+  @JoinColumn([{ name: "ID_Phong", referencedColumnName: "id" }])
+  idPhong2: Phong;
 
   @ManyToOne(() => Hoadon, (hoadon) => hoadon.vedats, {
     onDelete: "NO ACTION",
@@ -70,12 +70,26 @@ export class Vedat {
   @JoinColumn([{ name: "ID_HoaDon", referencedColumnName: "id" }])
   idHoaDon2: Hoadon;
 
+  @ManyToOne(() => Rapphim, (rapphim) => rapphim.vedats, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "ID_Rap", referencedColumnName: "id" }])
+  idRap2: Rapphim;
+
   @ManyToOne(() => Khachhang, (khachhang) => khachhang.vedats, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
   @JoinColumn([{ name: "ID_KhachHang", referencedColumnName: "id" }])
   idKhachHang2: Khachhang;
+
+  @ManyToOne(() => Suatchieu, (suatchieu) => suatchieu.vedats, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "ID_Suat", referencedColumnName: "id" }])
+  idSuat2: Suatchieu;
 
   @ManyToOne(() => Phim, (phim) => phim.vedats, {
     onDelete: "NO ACTION",
@@ -84,24 +98,10 @@ export class Vedat {
   @JoinColumn([{ name: "ID_Phim", referencedColumnName: "id" }])
   idPhim2: Phim;
 
-  @ManyToOne(() => Phong, (phong) => phong.vedats, {
+  @ManyToOne(() => Ghe, (ghe) => ghe.vedats, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
-  @JoinColumn([{ name: "ID_Phong", referencedColumnName: "id" }])
-  idPhong2: Phong;
-
-  @ManyToOne(() => Rapphim, (rapphim) => rapphim.vedats, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "ID_Rap", referencedColumnName: "id" }])
-  idRap2: Rapphim;
-
-  @ManyToOne(() => Suatchieu, (suatchieu) => suatchieu.vedats, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "ID_Suat", referencedColumnName: "id" }])
-  idSuat2: Suatchieu;
+  @JoinColumn([{ name: "ID_Ghe", referencedColumnName: "id" }])
+  idGhe2: Ghe;
 }

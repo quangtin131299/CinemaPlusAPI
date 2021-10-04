@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -34,6 +35,12 @@ export class Rapphim {
   lichchieus: Lichchieu[];
 
   @ManyToMany(() => Phim, (phim) => phim.rapphims)
+  @JoinTable({
+    name: "phim_rapphim",
+    joinColumns: [{ name: "ID_Rap", referencedColumnName: "id" }],
+    inverseJoinColumns: [{ name: "ID_Phim", referencedColumnName: "id" }],
+    schema: "datvephim",
+  })
   phims: Phim[];
 
   @OneToMany(() => Phong, (phong) => phong.idRap2)

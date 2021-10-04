@@ -1,8 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
-import { ApiForbiddenResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, HttpStatus, Put, Query, Res } from '@nestjs/common';
+import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
 import { Phim } from 'Models/entities/Phim';
 import { ScheduleService } from 'src/schedule/schedule.service';
 import { MoviesService } from './movies.service';
+
 
 @ApiTags('Movie')
 @Controller('movies')
@@ -19,7 +21,7 @@ export class MoviesController {
        let viewCountMovie = await this.movieService.getViewCountOfMovie();
        let firstShowTimeMovie = await this.scheduleService.getShowTimeOfMovie(movies, currentTime, currentDate);
        let resultCustomMovies = this.customFieldForMovie(movies,viewCountMovie, firstShowTimeMovie);
-       
+              
        return resultCustomMovies.sort((a,b)=> 0 - (a.luocXem > b.luocXem ? 1 : -1));//DESC
     }
 
@@ -85,6 +87,7 @@ export class MoviesController {
                 }
             }
         }
+
         
         return movies;
     }
@@ -135,4 +138,43 @@ export class MoviesController {
         return this.movieService.searchAllMovie(keyWord, typeName, contryName,cinemaName);
     }
     
+    @Put('/incrementmovie')
+    @ApiOkResponse({description: 'Increment number like of movie'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
+    async incrementLikeMovie(@Body() data: any, @Res() res: Response): Promise<Response> {
+        let idCustomer = data.idCustomer;
+        let idMovie = data.idMovie;
+        let resultUpdateLike = await this.movieService.incrementLikeMovie(idMovie, idCustomer);
+        
+        if(resultUpdateLike.affected != 0){
+            return res.status(HttpStatus.OK).json({
+                mess: 'Success',
+                statusCode: 1
+            })
+        }
+
+        return res.status(HttpStatus.BAD_REQUEST).json({
+            mess: 'Fail',
+            statusCode: 0
+        })
+    }
+
+    @Get('/checkcustomerlike')
+    @ApiOkResponse({description: 'Check customer was liked movie'})
+    @ApiNotFoundResponse({description: 'Not Found.'})
+    async checkCustomerLike(@Query('idCustomer') idCustomer: number, @Query('idMovie') idMovie: number, @Res() res:Response):Promise<Response> {
+        let resultCheck = await this.movieService.checkCustomerLikeMovie(idCustomer, idMovie);
+        
+        if(resultCheck == true){
+            return res.status(HttpStatus.OK).json({
+                mess: 'Success',
+                statusCode: 1
+            })
+        }
+        
+        return res.status(HttpStatus.BAD_REQUEST).json({
+            mess: 'Fail',
+            statusCode: 0
+        });
+    }
 }

@@ -3,15 +3,15 @@ import {
   Entity,
   Index,
   JoinColumn,
-  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Binhluan } from "./Binhluan";
-import { Nhacungcap } from "./Nhacungcap";
+import { KhachhangPhim } from "./KhachhangPhim";
 import { Vungmien } from "./Vungmien";
+import { Nhacungcap } from "./Nhacungcap";
 import { PhimLichchieu } from "./PhimLichchieu";
 import { Loaiphim } from "./Loaiphim";
 import { PhimPhongXuat } from "./PhimPhongXuat";
@@ -68,12 +68,8 @@ export class Phim {
   @OneToMany(() => Binhluan, (binhluan) => binhluan.idPhim2)
   binhluans: Binhluan[];
 
-  @ManyToOne(() => Nhacungcap, (nhacungcap) => nhacungcap.phims, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "ID_NhaCungCap", referencedColumnName: "id" }])
-  idNhaCungCap2: Nhacungcap;
+  @OneToMany(() => KhachhangPhim, (khachhangPhim) => khachhangPhim.idPhim2)
+  khachhangPhims: KhachhangPhim[];
 
   @ManyToOne(() => Vungmien, (vungmien) => vungmien.phims, {
     onDelete: "NO ACTION",
@@ -81,6 +77,13 @@ export class Phim {
   })
   @JoinColumn([{ name: "ID_QuocGia", referencedColumnName: "id" }])
   idQuocGia2: Vungmien;
+
+  @ManyToOne(() => Nhacungcap, (nhacungcap) => nhacungcap.phims, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "ID_NhaCungCap", referencedColumnName: "id" }])
+  idNhaCungCap2: Nhacungcap;
 
   @OneToMany(() => PhimLichchieu, (phimLichchieu) => phimLichchieu.idPhim2)
   phimLichchieus: PhimLichchieu[];
@@ -92,12 +95,6 @@ export class Phim {
   phimPhongXuats: PhimPhongXuat[];
 
   @ManyToMany(() => Rapphim, (rapphim) => rapphim.phims)
-  @JoinTable({
-    name: "phim_rapphim",
-    joinColumns: [{ name: "ID_Phim", referencedColumnName: "id" }],
-    inverseJoinColumns: [{ name: "ID_Rap", referencedColumnName: "id" }],
-    schema: "datvephim",
-  })
   rapphims: Rapphim[];
 
   @OneToMany(() => Vedat, (vedat) => vedat.idPhim2)
